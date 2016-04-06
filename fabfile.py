@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from fabric.api import env, local, prompt, settings
+from __future__ import with_statement
+from fabric.api import local, settings, abort, run, cd, prompt
+from fabric.contrib.console import confirm
 
 
 
@@ -14,7 +16,7 @@ def commit_push():
             # если в него попали ненужные файлы или наоборот
         local('git add .')
         local('git commit')  # тут вылазит консольный редактор и можно ввести комментарий
-    	local("git push")
+    	local("git push origin --all")
 
 def deploy():
     code_dir = '.'
