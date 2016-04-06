@@ -15,3 +15,6 @@ def cantbe():
 @app.route("/not_much")
 def image():
     return send_file("vatrushka.jpg", mimetype='image/png')
+
+if __name__ == "__main__":
+	app.run()
