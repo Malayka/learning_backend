@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 
 from __future__ import with_statement
-from fabric.api import local, settings, abort, run, cd, prompt
+from fabric.api import env, local, settings, abort, run, cd, prompt
 from fabric.contrib.console import confirm
 
+env.hosts = ['mardanov@109.234.34.140',]
 
 
 def commit_push():
@@ -19,7 +20,7 @@ def commit_push():
     	local("git push origin --all")
 
 def deploy():
-    code_dir = '.'
+    code_dir = '/home/mardanov/testing_visualization/fabric/learning_backend'
     with cd(code_dir):
-        run("git pull")
+        run("git pull origin develop")
         run("python flaskapp.py")
