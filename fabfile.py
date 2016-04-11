@@ -19,8 +19,11 @@ def commit_push():
         local('git commit')  # тут вылазит консольный редактор и можно ввести комментарий
     	local("git push origin --all")
 
+
 def deploy():
     code_dir = '/home/mardanov/testing_visualization/fabric/learning_backend'
     with cd(code_dir):
         run("git pull origin develop")
-        run("python flaskapp.py")
+        run("uwsgi kutak_u.ini")
+        run("sudo ln -s kutak_n.conf /etc/nginx/sites-enabled/")
+        run("sudo nginx -s reload")
