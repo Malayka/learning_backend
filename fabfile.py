@@ -24,6 +24,7 @@ def deploy():
     code_dir = '/home/mardanov/testing_visualization/fabric/learning_backend'
     with cd(code_dir):
         run("git pull origin develop")
-        run("uwsgi kutak_u.ini")
+        if run("uwsgi kutak_u.ini").failed:
+        	pass
         run("sudo ln -s kutak_n.conf /etc/nginx/sites-enabled/")
         run("sudo nginx -s reload")
